@@ -1,0 +1,75 @@
+{
+    "Routes": [
+        {
+
+            "DownstreamPathTemplate": "/api/Student/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ],
+
+            "UpstreamPathTemplate": "/stu/{everything}",
+            "UpstreamHttpMethod": [ "Get" ],
+
+            "SwaggerKey": "Stu"
+        },
+        {
+            "DownstreamPathTemplate": "/api/Car/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 6001
+                }
+            ],
+            "UpstreamPathTemplate": "/car/{everything}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "RateLimitOptions": {
+                "ClientWhitelist": [],
+                "EnableRateLimiting": true,
+                "Period": "5s",
+                "PeriodTimespan": 15,
+                "Limit": 2
+            },
+            "QoSOptions": {
+                "ExceptionsAllowedBeforeBreaking": 2,
+                "DurationOfBreak": 9000,
+                "TimeoutValue": 5000
+            },
+            "SwaggerKey": "Car"
+        }
+    ],
+    "SwaggerEndPoints": [
+        {
+            "Key": "Stu",
+            "Config": [
+                {
+                    "Name": "Student API",
+                    "Version": "v1",
+                    "Url": "https://localhost:5001/swagger/v1/swagger.json"
+                }
+            ]
+        },
+        {
+            "Key": "Car",
+            "Config": [
+                {
+                    "Name": "Car API",
+                    "Version": "v1",
+                    "Url": "https://localhost:6001/swagger/v1/swagger.json"
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "https://localhost",
+        "RateLimitOptions": {
+            "DisableRateLimitHeaders": false,
+            "QuotaExceededMessage": "Gừi lằm gửi lốn",
+            "HttpStatusCode": 403
+        }
+    }
+}

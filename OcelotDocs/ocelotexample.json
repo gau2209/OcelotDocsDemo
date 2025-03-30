@@ -13,7 +13,13 @@
 
             "UpstreamPathTemplate": "/stu/{everything}",
             "UpstreamHttpMethod": [ "Get" ],
-
+            "RateLimitOptions": {
+                "ClientWhitelist": [],
+                "EnableRateLimiting": true,
+                "Period": "5s",
+                "PeriodTimespan": 15,
+                "Limit": 2
+            },
             "SwaggerKey": "Stu"
         },
         {
@@ -27,13 +33,6 @@
             ],
             "UpstreamPathTemplate": "/car/{everything}",
             "UpstreamHttpMethod": [ "Get" ],
-            "RateLimitOptions": {
-                "ClientWhitelist": [],
-                "EnableRateLimiting": true,
-                "Period": "5s",
-                "PeriodTimespan": 15,
-                "Limit": 2
-            },
             "QoSOptions": {
                 "ExceptionsAllowedBeforeBreaking": 2,
                 "DurationOfBreak": 9000,

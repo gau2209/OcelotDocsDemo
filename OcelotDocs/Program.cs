@@ -18,8 +18,12 @@ IConfiguration confg = new ConfigurationBuilder()
     .Build();
 
 builder.Services.AddOcelot(confg).AddPolly();
+
 builder.Services.AddSwaggerForOcelot(confg);
+
 builder.Services.AddSwaggerGen();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
